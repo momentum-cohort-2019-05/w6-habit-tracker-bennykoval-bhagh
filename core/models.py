@@ -13,7 +13,7 @@ class Habit(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     item = models.TextField(max_length=100, default="Test")
     date = models.DateField(auto_now_add=True)  
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='user_habits')
 
     class Meta:
         ordering = ["-date"]
@@ -21,8 +21,11 @@ class Habit(models.Model):
     def __str__(self):
         return self.goal
 
+    def get_absolute_url(self):
+        return reverse('habit-detail', args=[str(self.id)])
+
 class DailyRecord(models.Model):
-    description = models.TextField(max_length=500, help_text="Enter comment about blog here.")
+    description = models.TextField(max_length=500)
     quantity = models.PositiveIntegerField(default=1)
     date = models.DateField(auto_now_add=True)
     habit = models.ForeignKey(to=Habit, on_delete=models.SET_NULL, null=True)
@@ -32,5 +35,7 @@ class DailyRecord(models.Model):
     
     def __str__(self):
         return self.description
+
+
     
     

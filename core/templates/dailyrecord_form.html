@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Post your daily record for this habit: <a href="{% url 'habit-detail' habit.pk %}">{{ habit.goal }}</a></p>
+<p>For "quantity," enter how many {{ habit.item }}s you {{ habit.action }}ed today</p>
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+    
+</form>
+{% endblock %}

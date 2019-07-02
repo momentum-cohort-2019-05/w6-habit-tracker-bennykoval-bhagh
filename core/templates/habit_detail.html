@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ habit.goal }}</h1>
+
+<p><strong>Action:</strong> {{ habit.action }}</p>
+<p><strong>Quantity:</strong> {{ habit.quantity }}</p>
+<p><strong>Item:</strong> {{ habit.item}}</p>
+
+<a href="{% url 'dailyrecord_form' habit.id %}">Add your daily record.</a></p>
+
+{% for dailyrecord in habit.dailyrecord_set.all %}
+<hr>
+<p>({{dailyrecord.date}}): {{dailyrecord.description}}</p>
+
+    {% if dailyrecord.quantity >= habit.quantity %}
+        <p>GOAL MET!</p>
+    {% else %}
+        <p>LOL FAIL</p>
+    {% endif %}
+{% endfor %}
+<hr>
+
+</div>
+
+{% endblock %}
