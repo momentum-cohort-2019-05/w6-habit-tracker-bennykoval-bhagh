@@ -9,7 +9,9 @@ import datetime
 class Habit(models.Model):
     """Model representing a habit"""
     goal = models.TextField(max_length=1000, help_text="Enter your daily goal here.")
+    action = models.TextField(max_length=100, default="Test")
     quantity = models.PositiveIntegerField(default=1)
+    item = models.TextField(max_length=100, default="Test")
     date = models.DateField(auto_now_add=True)  
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
@@ -21,6 +23,7 @@ class Habit(models.Model):
 
 class DailyRecord(models.Model):
     description = models.TextField(max_length=500, help_text="Enter comment about blog here.")
+    quantity = models.PositiveIntegerField(default=1)
     date = models.DateField(auto_now_add=True)
     habit = models.ForeignKey(to=Habit, on_delete=models.SET_NULL, null=True)
 
