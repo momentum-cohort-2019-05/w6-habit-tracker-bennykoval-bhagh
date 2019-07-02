@@ -8,4 +8,6 @@
         Goals today:
         {{ habit.action|title }} {{ habit.quantity}} {{habit.item}}
     {% endfor %}
+
+    <a href="{% url 'new' %}">Create a new habit.</a>
 {% endblock %}
