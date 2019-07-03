@@ -11,6 +11,5 @@ urlpatterns = [
     path('goals/<int:pk>/dailyrecord/', views.CreateDailyRecord.as_view(), name='dailyrecord_form'),
     path('goals/new/', views.habit_new, name='new'),
     url(r'^register/', views.register, name='register'),
-
 ]
 

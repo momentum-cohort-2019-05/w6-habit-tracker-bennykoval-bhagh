@@ -4,10 +4,12 @@
 {% block content %}
 <p>Post your daily record for this habit: <a href="{% url 'habit-detail' habit.pk %}">{{ habit.goal }}</a></p>
 
-<form method="POST">
-    {% csrf_token %}
-    <p>{{ habit.item }} for today:</p> {{ form.as_p }}
-    <button type="submit">Submit</button>
-    
-</form>
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        <p>{{ habit.item }} for today:</p> {{ form.as_p }}
+        <button type="submit">Submit</button>
+        
+    </form>
+</div>
 {% endblock %}

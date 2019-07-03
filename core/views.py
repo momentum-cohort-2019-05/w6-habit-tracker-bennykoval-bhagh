@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 import re
 
 
@@ -25,12 +26,9 @@ class HabitView(TemplateView):
          context['habit'] = Habit.objects.all()
          return context
 
-
 class HabitDetailView(generic.DetailView):
     model = Habit
     template_name = "habit_detail.html"
-
-
 
 class CreateDailyRecord(LoginRequiredMixin, CreateView):
     model = DailyRecord
