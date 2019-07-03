@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{ request.user }}'s Habits</h1>
 
-    <p>
+<h1 class="user-habits">{{ request.user }}'s goals</h1>
     {% for habit in request.user.user_habits.all %}
-        <p><a href="{{ habit.get_absolute_url }}">{{ habit.goal }}</a></p>
-        Goals today:
-        {{ habit.action|title }} {{ habit.quantity}} {{habit.item}}
+        <p class="goal-statement"><a class="goal-link" href="{{ habit.get_absolute_url }}">{{ habit.goal }}</a></p>
+        <!-- <p class="goal-breakdown">Goals today: {{ habit.action|title }} {{ habit.quantity}} {{habit.item}}</p> -->
     {% endfor %}
 
-    <a href="{% url 'new' %}">Create a new habit.</a>
 {% endblock %}

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
 
     # Third-party
     'debug_toolbar',
+    'widget_tweaks',
+    'django.forms',
 ]
 
 MIDDLEWARE = [
@@ -60,11 +62,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'habittracker.urls'
 
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'DIRS': 'core/templates/',
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -72,6 +75,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                ]
         },
     },
 ]

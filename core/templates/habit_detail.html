@@ -10,12 +10,12 @@
 
 {% for dailyrecord in habit.dailyrecord_set.all %}
 <hr>
-<p>({{dailyrecord.date}}): {{dailyrecord.description}}</p>
+<p>({{dailyrecord.date}}): {{dailyrecord.quantity}}</p>
 
     {% if dailyrecord.quantity >= habit.quantity %}
-        <p>GOAL MET!</p>
+        <p>Congratulations - you've met your goal!</p>
     {% else %}
-        <p>LOL FAIL</p>
+        <p>You have not met your goal yet.</p>
     {% endif %}
 {% endfor %}
 <hr>

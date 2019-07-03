@@ -6,12 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>RED ROBINS</h1>
-    <h2>yum (from base)</h2>
-    <div class="content">{% block content %}{% endblock %}</div>
+    <div id="navigation-bar">
+        <nav>
+            <ul>
+            <li><a href="{% url 'habit' %}">Goals</a></li>
+            <li><a href=#>Observers</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}'">Register</a></li>
+            </ul>
+        </nav>
+    </div>
     
+<header class="random-img">
+        <h1 class="daily-goals"><a class="new-goal-link" href="{% url 'new' %}">What are your goals for the day?</a></h1>
+</header>
+
+<div class="content">{% block content %}{% endblock %}</div>
+
 </body>
 </html>

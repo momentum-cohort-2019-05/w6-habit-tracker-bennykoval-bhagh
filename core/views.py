@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
 import re
 
 
@@ -35,8 +36,7 @@ class CreateDailyRecord(LoginRequiredMixin, CreateView):
     model = DailyRecord
     template_name = "dailyrecord_form.html"
 
-    fields = ['description', 'quantity']
-
+    fields = ['quantity']
 
     def get_context_data(self, **kwargs):
         context = super(CreateDailyRecord, self).get_context_data(**kwargs)
@@ -72,3 +72,15 @@ def habit_new(request):
     else:
         form = HabitForm()
     return render(request, 'habit_new.html', {'form': form})
+
+def register(request):
+    if request.method =='POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login')
+    else:
+        form = UserCreationForm()
+        args = {'form': form}
+        return render(request, 'registration/reg_form.html', args)
+        
